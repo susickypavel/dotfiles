@@ -1,0 +1,34 @@
+
+theme = Dark+
+# Font configuration
+font-family = JetBrains Mono
+font-size = 16
+
+# Window padding (in pts)
+window-padding-x = 16
+window-padding-y = 16
+
+# Cursor
+cursor-style = bar
+
+# URL settings
+link-url = true
+
+# Key remapping for navigation
+# Move to beginning/end of line
+# keybind = cmd+left=text:\x1bOH
+# keybind = cmd+right=text:\x1bOF
+
+# # Move by word
+# keybind = alt+left=text:\x1bb
+# keybind = alt+right=text:\x1bf
+
+# Window state
+window-save-state = always
+
+# Window decoration
+window-decoration = true
+
+# Additional notes:
+# - Remote control works differently in Ghostty
+
