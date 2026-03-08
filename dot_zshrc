@@ -1,0 +1,22 @@
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    # Apple Silicon (M1/M2/M3) path
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+    # Intel Mac path
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+
+antidote load
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# bun completions
+[ -s "/Users/pavel/.bun/_bun" ] && source "/Users/pavel/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+eval "$(starship init zsh)"
