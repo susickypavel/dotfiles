@@ -1,7 +1,10 @@
 
 theme = Dark+
+
 # Font configuration
 font-family = JetBrains Mono
+font-style = Bold
+font-style-bold = ExtraBold
 font-size = 16
 
 # Window padding (in pts)

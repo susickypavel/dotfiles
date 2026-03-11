@@ -20,3 +20,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(starship init zsh)"
+
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+  export TERM=xterm-256color
+fi
