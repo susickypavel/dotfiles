@@ -1,0 +1,7 @@
+eval "$(starship init zsh)"
+
+# Antidote plugin manager
+source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+
+# Load plugins from ~/.zsh_plugins.txt
+antidote load

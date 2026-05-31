@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "windows" }}
+.zsh_plugins.txt
+{{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+.config/ghostty/**
+{{- end }}
+
+{{- if ne .chezmoi.os "windows" }}
+Documents/PowerShell/**
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" }}
+.zshrc
+{{- end }}
