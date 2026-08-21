@@ -18,7 +18,7 @@ home/
   dot_zshrc.tmpl                  # selects the correct zshrc template by OS
   dot_zsh_plugins.txt             # macOS and Linux ~/.zsh_plugins.txt
   private_dot_config/
-    ghostty/config                # macOS-only Ghostty config
+    ghostty/config.tmpl           # macOS/Linux Ghostty config selector
     starship.toml                 # shared ~/.config/starship.toml
   Documents/PowerShell/
     Microsoft.PowerShell_profile.ps1 # Windows-only PowerShell 7 profile

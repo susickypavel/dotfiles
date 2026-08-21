@@ -2,7 +2,7 @@
 .zsh_plugins.txt
 {{- end }}
 
-{{- if ne .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "windows" }}
 .config/ghostty/**
 {{- end }}
 
