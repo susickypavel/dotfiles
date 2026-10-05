@@ -12,11 +12,16 @@ files such as this README out of `$HOME`.
 ```text
 home/
   .chezmoiignore                  # platform-specific target exclusions
+  .chezmoitemplates/agents/
+    AGENTS.md                    # shared global instructions (initially empty)
   .chezmoitemplates/claude/
     settings.json                # shared Claude Code baseline
   dot_zsh_plugins.txt             # macOS and Linux ~/.zsh_plugins.txt
   private_dot_claude/
+    empty_CLAUDE.md.tmpl          # shared instructions -> ~/.claude/CLAUDE.md
     modify_settings.json         # merges baseline into ~/.claude/settings.json
+  private_dot_codex/
+    empty_AGENTS.md.tmpl          # shared instructions -> ~/.codex/AGENTS.md
   private_dot_config/
     ghostty/config.tmpl           # macOS/Linux Ghostty config selector
     starship.toml                 # shared ~/.config/starship.toml
@@ -36,6 +41,27 @@ Use the simplest representation that fits each file:
 - Put identical files directly under `home/`, as with `starship.toml`.
 - Put files needed by only some operating systems under `home/`, then exclude
   them elsewhere in `home/.chezmoiignore`.
+
+## Agent instructions
+
+Edit `home/.chezmoitemplates/agents/AGENTS.md` to set shared global
+instructions for Codex and Claude Code. It starts empty. Chezmoi copies its
+literal contents into `~/.codex/AGENTS.md` and `~/.claude/CLAUDE.md` on
+macOS, Linux, and Windows using the two include templates. On Windows,
+`~` is your user profile directory.
+
+The templates use the
+[`empty_` attribute](https://www.chezmoi.io/reference/source-state-attributes/)
+so chezmoi creates the destination files even while the shared source is
+empty. Edit the shared source, then review and apply just these files:
+
+```sh
+chezmoi diff ~/.codex/AGENTS.md ~/.claude/CLAUDE.md
+chezmoi apply ~/.codex/AGENTS.md ~/.claude/CLAUDE.md
+```
+
+These files hold standing instructions. Reusable skills are installed
+separately; referencing a skill here does not install it.
 
 ## Claude Code
 

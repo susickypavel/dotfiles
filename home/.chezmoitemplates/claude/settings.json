@@ -6,6 +6,7 @@
   },
   "tui": "fullscreen",
   "theme": "dark",
+  "cleanupPeriodDays": 21,
   "autoUpdatesChannel": "latest",
   "disableClaudeAiConnectors": false,
   "disableWorkflows": true,
@@ -15,5 +16,12 @@
     "deny": [
       "NotebookEdit"
     ]
+  },
+  "skillOverrides": {
+    "anthropic-skills:docx": "off",
+    "anthropic-skills:google-workspace": "off",
+    "anthropic-skills:morning": "off",
+    "anthropic-skills:pptx": "off",
+    "anthropic-skills:xlsx": "off"
   }
 }
