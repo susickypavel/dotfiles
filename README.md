@@ -20,6 +20,8 @@ home/
   private_dot_config/
     ghostty/config.tmpl           # macOS/Linux Ghostty config selector
     starship.toml                 # shared ~/.config/starship.toml
+  AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/
+    settings.json                # Windows-only Windows Terminal settings
   Documents/PowerShell/
     Microsoft.PowerShell_profile.ps1 # Windows-only PowerShell 7 profile
 ```
@@ -58,6 +60,21 @@ full copy containing machine-specific settings.
 
 Project settings can override this user baseline; see the
 [Claude Code settings documentation](https://code.claude.com/docs/en/settings).
+
+## Windows Terminal
+
+`home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`
+manages the settings for the stable Microsoft Store installation of
+[Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file).
+The `AppData` directory is excluded on macOS and Linux.
+
+This is a full copy of the configuration, including profiles, keybindings,
+fonts, and the PowerShell starting directory (`D:\repositories`). Edit it
+in the repo and apply with chezmoi, or save changes made in Terminal's UI:
+
+```powershell
+chezmoi add "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+```
 
 ## Bootstrap a new machine
 
