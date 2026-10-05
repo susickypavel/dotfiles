@@ -1,0 +1,19 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $current := .chezmoi.stdin | trim | default "{}" | fromJson -}}
+{{- $baseline := include ".chezmoitemplates/claude/settings.json" | fromJson -}}
+{{- if not (kindIs "map" $current) -}}
+  {{- fail "Claude settings must be a JSON object" -}}
+{{- end -}}
+
+{{- /* Preserve local permission rules as well as the shared rules. */ -}}
+{{- $currentPermissions := get $current "permissions" | default dict -}}
+{{- $baselinePermissions := get $baseline "permissions" | default dict -}}
+{{- range $key := list "allow" "ask" "deny" "additionalDirectories" -}}
+  {{- if hasKey $baselinePermissions $key -}}
+    {{- $localRules := get $currentPermissions $key | default list -}}
+    {{- $sharedRules := get $baselinePermissions $key | default list -}}
+    {{- $_ := set $baselinePermissions $key (concat $localRules $sharedRules | uniq) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- mustMergeOverwrite $current $baseline | toPrettyJson }}
