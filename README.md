@@ -12,10 +12,6 @@ files such as this README out of `$HOME`.
 ```text
 home/
   .chezmoiignore                  # platform-specific target exclusions
-  .chezmoitemplates/zshrc/
-    darwin                        # macOS ~/.zshrc contents
-    linux                         # Linux ~/.zshrc contents
-  dot_zshrc.tmpl                  # selects the correct zshrc template by OS
   dot_zsh_plugins.txt             # macOS and Linux ~/.zsh_plugins.txt
   private_dot_config/
     ghostty/config.tmpl           # macOS/Linux Ghostty config selector
@@ -25,7 +21,6 @@ home/
 ```
 
 Chezmoi source names describe their destination paths. For example,
-`dot_zshrc.tmpl` becomes `~/.zshrc`, and
 `private_dot_config/starship.toml` becomes `~/.config/starship.toml`.
 
 ## Platform rules
@@ -35,9 +30,6 @@ Use the simplest representation that fits each file:
 - Put identical files directly under `home/`, as with `starship.toml`.
 - Put files needed by only some operating systems under `home/`, then exclude
   them elsewhere in `home/.chezmoiignore`.
-- For a path that exists on multiple systems but has different contents, use
-  one `.tmpl` target file and select an OS-specific file from
-  `home/.chezmoitemplates/`, as with `.zshrc`.
 
 ## Bootstrap a new machine
 
@@ -72,10 +64,6 @@ chezmoi add ~/.config/starship.toml
 
 For a file that should exist only on selected systems, add it normally and add
 its target path to the appropriate branch in `home/.chezmoiignore`.
-
-For a path whose full contents differ per OS, add or update the corresponding
-file in `home/.chezmoitemplates/` and keep the small selector template under
-`home/`.
 
 Useful daily commands:
 
