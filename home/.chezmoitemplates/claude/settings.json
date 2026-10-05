@@ -12,6 +12,7 @@
   "disableWorkflows": true,
   "disableBundledSkills": true,
   "disableArtifact": true,
+  "skipDangerousModePermissionPrompt": true,
   "permissions": {
     "deny": [
       "NotebookEdit"
