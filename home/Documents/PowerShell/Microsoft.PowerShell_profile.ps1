@@ -1,7 +1,5 @@
-# starship
-Invoke-Expression (&starship init powershell)
-
-# mise
+# activations
+(&starship init powershell) | Out-String | Invoke-Expression
 (&mise activate pwsh) | Out-String | Invoke-Expression
 
 # zsh-autosuggestions-like inline suggestions
