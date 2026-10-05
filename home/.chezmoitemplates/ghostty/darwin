@@ -33,3 +33,8 @@ window-decoration = true
 
 # Additional notes:
 # - Remote control works differently in Ghostty
+
+# Command+Return is handled by the Raycast Open Ghostty Tab command.
+keybind = cmd+enter=unbind
+# Opening a folder creates a tab, or a window when none exists.
+macos-dock-drop-behavior = new-tab

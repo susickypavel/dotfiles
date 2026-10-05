@@ -29,6 +29,8 @@ home/
     settings.json                # Windows-only Windows Terminal settings
   Documents/PowerShell/
     Microsoft.PowerShell_profile.ps1 # Windows-only PowerShell 7 profile
+  Scripts/raycast/
+    executable_open-ghostty-tab.sh # macOS-only Raycast command
 ```
 
 Chezmoi source names describe their destination paths. For example,
@@ -86,6 +88,31 @@ full copy containing machine-specific settings.
 
 Project settings can override this user baseline; see the
 [Claude Code settings documentation](https://code.claude.com/docs/en/settings).
+
+## Ghostty shortcut on macOS
+
+Chezmoi manages the macOS Ghostty settings and the executable script at
+`~/Scripts/raycast/open-ghostty-tab.sh`. The script checks whether Ghostty is
+running. If it is closed, the script launches it without sending a folder,
+which prevents an extra startup tab. If it is running, the script opens a
+new tab in the home folder. Ghostty can still restore previously saved tabs.
+
+On a new Mac with Ghostty and Raycast installed:
+
+1. Apply these files:
+   ```sh
+   chezmoi apply ~/.config/ghostty/config ~/Scripts/raycast/open-ghostty-tab.sh
+   ```
+2. In Raycast Settings, open Extensions > Script Commands. Add
+   `~/Scripts/raycast` as a script directory.
+3. Assign Command+Return to **Open Ghostty Tab**. Keep Raycast running.
+4. If Ghostty is already running, press Command+Shift+Comma to reload its
+   configuration.
+
+The macOS configuration removes Ghostty's Command+Return full-screen
+binding and sets folder opening to create a tab. Raycast's script directory
+and shortcut assignment are local settings; chezmoi does not manage them.
+The script is excluded on Linux and Windows.
 
 ## Windows Terminal
 
