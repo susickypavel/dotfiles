@@ -24,6 +24,9 @@ home/
     empty_AGENTS.md.tmpl          # shared instructions -> ~/.codex/AGENTS.md
   private_dot_config/
     ghostty/config.tmpl           # macOS/Linux Ghostty config selector
+    hypr/mouse.lua               # Linux Hyprland mouse acceleration profile
+    hypr/modify_input.lua        # loads mouse.lua; keeps local input settings
+    hypr/windows-accel-gen.py    # mouse acceleration curve generator
     starship.toml                 # shared ~/.config/starship.toml
   AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/
     settings.json                # Windows-only Windows Terminal settings
@@ -86,6 +89,51 @@ full copy containing machine-specific settings.
 
 Project settings can override this user baseline; see the
 [Claude Code settings documentation](https://code.claude.com/docs/en/settings).
+
+## Hyprland mouse profile (Linux)
+
+`home/private_dot_config/hypr/mouse.lua` contains the custom acceleration
+curve from this machine. It models Windows "Enhance pointer precision"
+with the default curve, pointer-speed slider 6/11, and a 1000 Hz mouse.
+The Hyprland `sensitivity` value is `0`.
+
+These files require Omarchy's Lua configuration for Hyprland. They are
+excluded on macOS and Windows. The modifier for `~/.config/hypr/input.lua`
+adds `require("hypr.mouse")` once and preserves the existing input settings.
+Omarchy must load `hypr.input` after its defaults, as its standard
+`hyprland.lua` does. The mouse profile then overrides earlier mouse values.
+It uses the global input settings, so it is not limited to one mouse.
+
+Review and apply these files on each compatible machine:
+
+```sh
+chezmoi diff ~/.config/hypr
+chezmoi apply ~/.config/hypr
+hyprctl reload
+hyprctl configerrors
+```
+
+The reload check must report no configuration errors. Applying these files
+can also reload Hyprland automatically. On the original machine, the old
+inline curve in `input.lua` can remain: `mouse.lua` loads last and takes
+precedence. Future shared changes belong in `mouse.lua`. Avoid `chezmoi add`
+or `chezmoi re-add` for `input.lua`, since that can replace the modifier
+with a copy of that machine's keyboard and other input settings.
+
+The generator uses Python 3 and has no external dependencies. If a mouse
+uses a different polling rate, adjust `POLL_HZ` in
+`home/private_dot_config/hypr/windows-accel-gen.py`. `SLIDER` and
+`EXTRA_SENS` control the modeled pointer speed and an extra multiplier.
+Run the generator from the repository root:
+
+```sh
+python3 home/private_dot_config/hypr/windows-accel-gen.py
+```
+
+Copy its output into the `accel_profile` string in
+`home/private_dot_config/hypr/mouse.lua`, then review and apply again.
+The repository shares one curve; machines with different polling rates
+need a curve that matches their mouse.
 
 ## Windows Terminal
 
