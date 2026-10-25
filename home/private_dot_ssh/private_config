@@ -1,0 +1,61 @@
+Include ~/.ssh/config.d/*
+
+Host pve01
+    HostName pve01.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host pbs01
+    HostName pbs01.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host caddy
+    HostName caddy.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host mc
+    HostName mc.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host haos
+    HostName haos.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host tailscale
+    HostName tailscale.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host o11y
+    HostName o11y.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host omv
+    HostName omv.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host immich
+    HostName immich.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host ai
+    HostName ai.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host smb
+    HostName smb.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519
+
+Host prasokod
+    HostName prasokod.infra.backendista.cz
+    User root
+    IdentityFile ~/.ssh/id_ed25519

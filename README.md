@@ -28,6 +28,8 @@ home/
     hypr/modify_input.lua        # loads mouse.lua; keeps local input settings
     hypr/windows-accel-gen.py    # mouse acceleration curve generator
     starship.toml                 # shared ~/.config/starship.toml
+  private_dot_ssh/
+    private_config                # shared ~/.ssh/config
   AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/
     settings.json                # Windows-only Windows Terminal settings
   Documents/PowerShell/
@@ -134,6 +136,22 @@ Copy its output into the `accel_profile` string in
 `home/private_dot_config/hypr/mouse.lua`, then review and apply again.
 The repository shares one curve; machines with different polling rates
 need a curve that matches their mouse.
+
+## SSH
+
+`home/private_dot_ssh/private_config` manages `~/.ssh/config` on all
+platforms. The `private_` attributes restrict the directory to mode `0700`
+and the config file to mode `0600` on macOS and Linux.
+
+The config includes `~/.ssh/config.d/*` for local settings. Keep SSH keys
+and local config files on each machine. They are not stored in this repo.
+
+Review and apply the config:
+
+```sh
+chezmoi --source . diff ~/.ssh/config
+chezmoi --source . apply ~/.ssh/config
+```
 
 ## Windows Terminal
 
