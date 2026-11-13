@@ -45,11 +45,6 @@ Host immich
     User root
     IdentityFile ~/.ssh/id_ed25519
 
-Host ai
-    HostName ai.backendista.cz
-    User root
-    IdentityFile ~/.ssh/id_ed25519
-
 Host smb
     HostName smb.backendista.cz
     User root
